@@ -1,0 +1,47 @@
+Telegram News Bot:
+Built a conversational telegram news bot cabable of delivering latest news from various categories like
+National news, International News, Sports News, Business news, Entertainment news and so on.It was also capable
+of doing Small Talk with the user.
+
+Bots are third party applications that run inside Telegram.Users can interact with bots by
+sending messages, commands and inline requests.You control your bot using HTTPS requests to 
+Telegram Bot API.
+
+The Bot was built on Python using Flask framework.Best thing abt flask: using a single file, you can create an application.
+There are 2 ways in which a converational chat bot can be made:
+1. Using Polling Program:(Simplest Telegram bot) A polling program keeps on asking the 
+   Telegram server that your bot has received any message or not. It is running all the time
+   so it is not efficient. FUNCTION USED WAS: updater.start_polling()
+2. Using Webhook: Polling was inefficient as you are sending requests again and again.
+   Webhook is a better method and is recommended when your bot is very heavy and involves
+   lots of users.Here, initially before starting the program, you tell the Telegram Server 
+   that you have a callback URL.Whenever a msg is sent to the bot Telegram server wakes up
+   and sends a request to the call back URL and accordingly action is taken.
+   Benefit is that we do not need to poll and check everytime if a msg is recieved.
+   Function used  bot.set_webhook("< public url generated using ngrok> "+ TOKEN given by botfather)
+
+Every chatbot application has 2 main components 
+UPDATER : sends and prepares update to the telegram bot from the telegram server
+DISPATCHER: update is handled by dispatcher. 
+Because of UPDATER AND DISPATCHER working together, request msg send by the user and responded correctly by the BOT.
+
+The chat application was integrated with Google's DialogFlow.It is a kind of converational 
+engine based on natural language conversations.Based on what request msg is recieved, what dialogflow does is:
+It detects the parameters or entities from the text msg and maps it with any INTENT accordingly.
+
+Entities are objects on which our bot will take some kind of actions.
+example for news bot: topic was an entity name which included parameters as Sports, Business etc
+
+Intents are mapping between what user said and what action is needed to be taken.
+example: get_news and small_talk(inbuilt in dialogflow) were intents. 
+Based on the user's text msg dialogflow understands which intent it falls under..it checks 
+and matches the entity/parameters and responds accordingly.
+
+To generate latest news of all categories, a python package called gnewsclient was used.
+The news category was decided accoring to the parameters/entity from users text message.
+
+Using the python-telegram-bot package a custom keyboard feature was added as reply markup.
+It had all the news categories as buttons of the keyboard.
+
+
+
